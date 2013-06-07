@@ -1,0 +1,64 @@
+﻿<Window x:Class="Trax.Scoreboard.W1024x768"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:Trax.Scoreboard"
+        Title="" Height="768" Width="1024" WindowStyle="None"
+        AllowsTransparency="True"
+        ResizeMode="CanResizeWithGrip" x:Name="DWindow" MouseLeftButtonDown="DWindow_MouseLeftButtonDown">
+    <Window.Resources>        
+        <local:BoldConverter x:Key="BoldConverter"></local:BoldConverter>
+        <local:ItalicConverter x:Key="ItalicConverter"></local:ItalicConverter>        
+    </Window.Resources>
+    <DockPanel LastChildFill="True">
+        <Label DockPanel.Dock="Bottom" FontSize="16">© Copyright Trax 2013 (http://www.furaffinity.net/user/traxswe)</Label>
+        <Label x:Name="WindowTitle" DockPanel.Dock="Top" Content="{Binding Path=Title.Text}" FontStyle="{Binding Path=Title.Italic, Converter={StaticResource ItalicConverter}}" FontSize="{Binding Path=Title.FontSize}" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="0,10,0,0" FontWeight="{Binding Path=Title.Bold, Converter={StaticResource BoldConverter}}" Foreground="{Binding Path=Title.Color}" FontFamily="{Binding Path=Title.FontName}" Visibility="Collapsed"></Label>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Column="1" Grid.Row="1" CornerRadius="1" BorderBrush="{Binding Path=ScoreboardBoxBorderColor}" BorderThickness="2" VerticalAlignment="Top" HorizontalAlignment="Center">
+                <StackPanel Background="{Binding Path=ScoreboardBoxColor}">
+                    <Border CornerRadius="1" BorderBrush="{Binding Path=ScoreboardBoxBorderColor}" BorderThickness="2" HorizontalAlignment="Center">
+                        <Label FontSize="{Binding Path=ClockFont.FontSize}" FontStyle="{Binding Path=ClockFont.Italic, Converter={StaticResource ItalicConverter}}" Content="{Binding Path=Clock}" FontWeight="{Binding Path=ClockFont.Bold, Converter={StaticResource BoldConverter}}" Foreground="{Binding Path=ClockFont.Color}" FontFamily="{Binding Path=ClockFont.FontName}"></Label>
+                    </Border>
+
+                    <Border CornerRadius="1" BorderBrush="{Binding Path=ScoreboardBoxBorderColor}" BorderThickness="2" Margin="0 10 0 0" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Border CornerRadius="1" BorderBrush="{Binding Path=ScoreboardBoxBorderColor}" BorderThickness="2">
+                                <Label MinWidth="200" MinHeight="200" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="{Binding Path=ScoreboardBoxFont.FontSize}" FontStyle="{Binding Path=ScoreboardBoxFont.Italic, Converter={StaticResource ItalicConverter}}" Content="{Binding Path=TeamOneScore}" FontWeight="{Binding Path=ScoreboardBoxFont.Bold, Converter={StaticResource BoldConverter}}" Foreground="{Binding Path=ScoreboardBoxFont.Color}" FontFamily="{Binding Path=ScoreboardBoxFont.FontName}"></Label>
+                            </Border>
+                            <Label MinWidth="50" MaxWidth="100"></Label>
+                            <Border CornerRadius="1" BorderBrush="{Binding Path=ScoreboardBoxBorderColor}" BorderThickness="2">
+                                <Label MinWidth="200" MinHeight="200" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="{Binding Path=ScoreboardBoxFont.FontSize}" FontStyle="{Binding Path=ScoreboardBoxFont.Italic, Converter={StaticResource ItalicConverter}}" Content="{Binding Path=TeamTwoScore}" FontWeight="{Binding Path=ScoreboardBoxFont.Bold, Converter={StaticResource BoldConverter}}" Foreground="{Binding Path=ScoreboardBoxFont.Color}" FontFamily="{Binding Path=ScoreboardBoxFont.FontName}"></Label>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+                    <Border CornerRadius="1" BorderBrush="{Binding Path=ScoreboardBoxBorderColor}" BorderThickness="2" Margin="0 10 0 0" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Border CornerRadius="1" BorderBrush="{Binding Path=ScoreboardBoxBorderColor}" BorderThickness="2">
+                                <Label MinWidth="225" MinHeight="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding Path=TeamOneName.Text}" FontStyle="{Binding Path=TeamOneName.Italic, Converter={StaticResource ItalicConverter}}" FontSize="{Binding Path=TeamOneName.FontSize}" FontWeight="{Binding Path=TeamOneName.Bold, Converter={StaticResource BoldConverter}}" Foreground="{Binding Path=TeamOneName.Color}" FontFamily="{Binding Path=TeamOneName.FontName}" />
+                            </Border>
+
+                            <Border CornerRadius="1" BorderBrush="{Binding Path=ScoreboardBoxBorderColor}" BorderThickness="2">
+                                <Label MinWidth="225" MinHeight="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding Path=TeamTwoName.Text}" FontStyle="{Binding Path=TeamTwoName.Italic, Converter={StaticResource ItalicConverter}}" FontSize="{Binding Path=TeamTwoName.FontSize}" FontWeight="{Binding Path=TeamTwoName.Bold, Converter={StaticResource BoldConverter}}" Foreground="{Binding Path=TeamTwoName.Color}" FontFamily="{Binding Path=TeamTwoName.FontName}" />
+                            </Border>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <Image Grid.Column="0" Grid.Row="1" Source="{Binding Path=TeamOneLogo}" />
+            <Image Grid.Column="2" Grid.Row="1" Source="{Binding Path=TeamTwoLogo}" />
+
+            <Label x:Name="FreeText" Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="36"></Label>
+            <Image x:Name="DisplayImage" Grid.Column="1" Grid.Row="2" />
+        </Grid>
+    </DockPanel>
+</Window>
